@@ -70,6 +70,6 @@ const fetchUsersAction = () => {
 };
 
 const store = createStore(reducer, applyMiddleware(thunk));
-const unsubscribe = store.subscribe(() => console.log(store.getState()));
+store.subscribe(() => console.log(store.getState()));
 
 store.dispatch(fetchUsersAction());
