@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 export const UserView = () => {
   const dispatch = useDispatch();
-  const userList = useSelector((state) => state.user.users);
+  const userState = useSelector((state) => state.user);
   useEffect(() => {
     dispatch(fetchUsers());
   }, []);
@@ -11,8 +11,12 @@ export const UserView = () => {
     <>
       <h2>List of users</h2>
 
-      {userList.length > 0 &&
-        userList.map((user) => <p key={user.id}>{user.name}</p>)}
+      {userState.users.length > 0 &&
+        userState.users.map((user) => <p key={user.id}>{user.name}</p>)}
+      {!userState.loading && userState.error.length > 0 && (
+        <p>Something went wrong!!</p>
+      )}
+      {userState.loading && <p>Loading!!</p>}
     </>
   );
 };

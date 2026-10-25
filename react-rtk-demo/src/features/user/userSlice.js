@@ -6,7 +6,7 @@ const initialState = {
   users: [],
   error: "",
 };
-
+//createAsyncThunk generates pending,fulfilled and rejected action types
 export const fetchUsers = createAsyncThunk("user/fetchUsers", async () => {
   return axios
     .get("https://jsonplaceholder.typicode.com/users/")
