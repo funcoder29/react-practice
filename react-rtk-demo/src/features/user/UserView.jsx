@@ -11,7 +11,8 @@ export const UserView = () => {
     <>
       <h2>List of users</h2>
 
-      {userState.users.length > 0 &&
+      {!userState.loading &&
+        userState.users.length > 0 &&
         userState.users.map((user) => <p key={user.id}>{user.name}</p>)}
       {!userState.loading && userState.error.length > 0 && (
         <p>Something went wrong!!</p>
