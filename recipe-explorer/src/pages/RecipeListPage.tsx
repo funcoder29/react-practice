@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useRecipes } from "../hooks/useRecipes";
+import { RecipeCard } from "../components/RecipeCard.tsx";
 import "./RecipeListPage.css";
 export const RecipeListPage = () => {
   const [searchText, setSearchText] = useState("");
@@ -18,14 +19,7 @@ export const RecipeListPage = () => {
       </label>
       {loading && <h4>Loading...</h4>}
       {error != null && error.length > 0 && <h4>Something went wrong!!</h4>}
-      <div className="recipe-grid">
-        {recipes.map((recipe) => (
-          <div key={recipe.id} className="recipe-card">
-            <p>{recipe.name}</p>
-            <img src={recipe.image} alt={recipe.name} className="recipe-card" />
-          </div>
-        ))}
-      </div>
+      <RecipeCard recipes={recipes} />
     </div>
   );
 };
