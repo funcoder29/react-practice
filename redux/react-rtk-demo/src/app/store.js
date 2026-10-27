@@ -2,6 +2,8 @@ import { configureStore } from "@reduxjs/toolkit";
 import cakeReducer from "../features/cake/cakeSlice";
 import icecreamReducer from "../features/icecream/icecreamSlice";
 import userReducer from "../features/user/userSlice";
+import { loggerMiddleware } from "../middleware/loggerMiddleware.js";
+import { crashReporter } from "../middleware/crashReporter.js";
 
 export const store = configureStore({
   reducer: {
@@ -9,4 +11,6 @@ export const store = configureStore({
     icecream: icecreamReducer,
     user: userReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(loggerMiddleware, crashReporter),
 });
