@@ -15,34 +15,31 @@
 #social .button-icon {
   filter: invert(1) brightness(2);
 }
-::view-transition-old(root) {
-  animation: 200ms ease-in both fade-out;
-}
 
-::view-transition-new(root) {
-  animation: 300ms ease-out both fade-in;
-}
-
-@keyframes fade-out {
+@keyframes slide-out {
   to {
-    opacity: 0;
+    transform: translateX(-100%);
   }
 }
 
-@keyframes fade-in {
+@keyframes slide-in {
   from {
-    opacity: 0;
+    transform: translateX(100%);
   }
-  to {
-    opacity: 1;
-  }
+}
+
+::view-transition-old(.slide-page) {
+  animation: 250ms ease both slide-out;
+}
+
+::view-transition-new(.slide-page) {
+  animation: 250ms ease both slide-in;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  ::view-transition-group(*),
-  ::view-transition-old(*),
-  ::view-transition-new(*) {
-    animation: none !important;
+  ::view-transition-old(.slide-page),
+  ::view-transition-new(.slide-page) {
+    animation: none;
   }
 }
 

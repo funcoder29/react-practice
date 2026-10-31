@@ -19,7 +19,11 @@ export const RecipeListPage = () => {
       </label>
       {loading && <h4>Loading...</h4>}
       {error != null && error.length > 0 && <h4>Something went wrong!!</h4>}
-      <RecipeCard recipes={recipes} />
+      <div className="recipe-grid">
+        {recipes.map((recipe) => (
+          <RecipeCard recipe={recipe} key={recipe.id} />
+        ))}
+      </div>
     </div>
   );
 };
